@@ -1,0 +1,72 @@
+[
+    {
+        "model": "client.client",
+        "pk": 1,
+        "fields": {
+            "name": "Gerard Butler",
+            "street": "83 Shore Street",
+            "suburb": "Brick",
+            "postcode": "08723",
+            "state": "NJ",
+            "contact_person": "Gerard Butler PA",
+            "email": "gerardbutler@sample.com",
+            "phone_number": "202-555-0180"
+        }
+    },
+    {
+        "model": "client.client",
+        "pk": 2,
+        "fields": {
+            "name": "Morgan Freeman",
+            "street": "355 Santa Clara Drive",
+            "suburb": "Lake Zurich",
+            "postcode": "60047",
+            "state": "IL",
+            "contact_person": "Morgan Freeman PA",
+            "email": "morganfreeman@sample.com",
+            "phone_number": "202-555-0144"
+        }
+    },
+    {
+        "model": "client.client",
+        "pk": 3,
+        "fields": {
+            "name": "Matt Damon",
+            "street": "355 Santa Clara Street",
+            "suburb": "Lake Zurich",
+            "postcode": "60047",
+            "state": "IL",
+            "contact_person": "Matt Damon",
+            "email": "mattdamon@sample.com",
+            "phone_number": "202-555-0145"
+        }
+    },
+    {
+        "model": "client.client",
+        "pk": 4,
+        "fields": {
+            "name": "Jennifer Lawrence",
+            "street": null,
+            "suburb": null,
+            "postcode": null,
+            "state": null,
+            "contact_person": null,
+            "email": "jenniferlawrence@sample.com",
+            "phone_number": "202-555-0157"
+        }
+    },
+    {
+        "model": "client.client",
+        "pk": 5,
+        "fields": {
+            "name": "Emma Stone",
+            "street": null,
+            "suburb": "Saint Paul",
+            "postcode": null,
+            "state": null,
+            "contact_person": "Julia",
+            "email": "emmastone@sample.com",
+            "phone_number": "202-555-0120"
+        }
+    }
+]
