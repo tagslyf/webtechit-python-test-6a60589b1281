@@ -1,8 +1,27 @@
-<h1>Client's Information</h1>
+{% extends "client/base.html" %}
 
-<form  method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <a href="{% url "client-list" %}"><input  type="button"  value="Back" /></a>
-    <input  type="submit"  value="Submit" />
-</form>
+{% block content %}
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Client's Information</span>
+    </nav>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <input class="form-control m-1 mt-3" type="text" placeholder="Name" name="name" value="{{ client.name|default_if_none:"" }}">
+            <input class="form-control m-1" type="text" placeholder="Email (sample@example.com)" name="email" value="{{ client.email|default_if_none:"" }}">
+            <label class="m-1 mt-3">Address (optional)</label>
+            <input class="form-control m-1" type="text" placeholder="Street" name="street" value="{{ client.street|default_if_none:"" }}">
+            <input class="form-control m-1" type="text" placeholder="Suburb" name="suburb" value="{{ client.suburb|default_if_none:"" }}">
+            <input class="form-control m-1" type="text" placeholder="State" name="state" value="{{ client.state|default_if_none:"" }}">
+            <input class="form-control m-1" type="text" placeholder="Postcode" name="postcode" value="{{ client.postcode|default_if_none:"" }}">
+            <input class="form-control m-1 mt-4" type="text" placeholder="Contact Person (optional)" name="contact_person" value="{{ client.contact_person|default_if_none:"" }}">
+            <input class="form-control m-1" type="text" placeholder="Phone Number" name="phone_number" value="{{ client.phone_number|default_if_none:"" }}">
+            <div class="p-2">
+                <a href="{% url "client-list" %}">
+                    <button type="button" class="btn btn-danger">Back</button>
+                </a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock  %}

@@ -1,48 +1,68 @@
-<h1>Clients <a  href="{% url "client-create" %}">add</a></h1>
-<form method="GET">
-    Filter by: 
-    {{ filter.form }}
-    <br><br>
-    Order by: 
-    <select name="order_by">
-        <option value="name">Name</option>
-        <option value="email">Email Address</option>
-        <option value="suburb">Suburb</option>
-        <option value="phone_number">Phone Number</option>
-    </select>
-    <select name="ordering">
-        <option value="asc">Ascending</option> 
-        <option value="des">Descending</option> 
-    </select>
-    <br><br>
-    <button type="submit">Search</button>
-</form>
+{% extends "client/base.html" %}
 
-<br><br>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Address (Suburb)</th>
-            <th>Contact Person</th>
-            <th>Phone Number</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for client in object_list %}
-        <tr>
-            <td><a  href="{% url "client-detail"  client.id  %}">{{ client.name }}</a></td>
-            <td>{{ client.email }}</td>
-            <td>
-                {{client.street|default_if_none:""}} 
-                {{client.suburb|default_if_none:""}} 
-                {{client.state|default_if_none:""}} 
-                {{client.postcode|default_if_none:""}}
-            </td>
-            <td>{{ client.contact_person|default_if_none:"" }}</td>
-            <td>{{ client.phone_number }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block content %}
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Client's List</span>
+    </nav>
+    <div class="container">
+        <div class="p-2">
+            <a href="{% url "client-create" %}">
+                <button type="button" class="btn btn-primary float-right">New Client</button>
+            </a>
+        </div>
+        <br>
+        <div>
+            <form method="GET">
+                <label class="m-1">Filter by:</label>
+                <div class="form-group">
+                    <input class="form-control m-1" type="text" placeholder="Name" name="name" value="{{ filter_by.name|default_if_none:"" }}">
+                    <input class="form-control m-1" type="text" placeholder="Email" name="email" value="{{ filter_by.email|default_if_none:"" }}">
+                    <input class="form-control m-1" type="text" placeholder="Phone Number" name="phone_number" value="{{ filter_by.phone_number|default_if_none:"" }}">
+                    <input class="form-control m-1" type="text" placeholder="Suburb" name="suburb" value="{{ filter_by.suburb|default_if_none:"" }}">
+                </div>
+                <label class="m-1 float-left">Order By: </label>
+                <select class="form-control w-25 float-left" name="order_by">
+                    <option value="name" {% if order_by == "name" %} selected {% endif %}>Name</option>
+                    <option value="email" {% if order_by == "email" %} selected {% endif %}>Email</option>
+                    <option value="phone_number" {% if order_by == "phone_number" %} selected {% endif %}>Phone Number</option>
+                    <option value="suburb" {% if order_by == "suburb" %} selected {% endif %}>Suburb</option>
+                </select>
+                <select class="form-control w-25 float-left" name="ordering">
+                    <option value="asc" {% if ordering == "asc" %} selected {% endif %}>Ascending</option>
+                    <option value="des" {% if ordering == "des" %} selected {% endif %}>Descending</option>
+                </select>
+                <br><br>
+                <div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address (street, suburb, state, postcode)</th>
+                    <th scope="col">Contact Person</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in object_list %}
+                    <tr>
+                        <td><a  href="{% url "client-detail"  client.id  %}">{{ client.name }}</a></td>
+                        <td>{{ client.email }}</td>
+                        <td>
+                            {{client.street|default_if_none:""}} 
+                            {{client.suburb|default_if_none:""}} 
+                            {{client.state|default_if_none:""}} 
+                            {{client.postcode|default_if_none:""}}
+                        </td>
+                        <td>{{ client.contact_person|default_if_none:"" }}</td>
+                        <td>{{ client.phone_number }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock  %}

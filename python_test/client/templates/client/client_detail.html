@@ -1,3 +1,53 @@
+{% extends "client/base.html" %}
+
+{% block content %}
+    <nav class="navbar navbar-light bg-light mb-2">
+        <span class="navbar-brand mb-0 h1">Client's Details</span>
+    </nav>
+    <div class="container">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+            </div>
+            <input type="text" class="form-control" value="{{ client.name|default_if_none:"" }}">
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email Address</span>
+            </div>
+            <input type="text" class="form-control" value="{{ client.email|default_if_none:"" }}">
+        </div>
+        <label for="basic-url">Address</label>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Street, Suburb, State, Postcode</span>
+            </div>
+            <input type="text" class="form-control" value="{{client.street|default_if_none:""}} {{client.suburb|default_if_none:""}} {{client.state|default_if_none:""}} {{client.postcode|default_if_none:""}}">
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Contact Person</span>
+            </div>
+            <input type="text" class="form-control" value="{{ client.contact_person|default_if_none:"" }}">
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Phone Number</span>
+            </div>
+            <input type="text" class="form-control" value="{{ client.phone_number|default_if_none:"" }}">
+        </div>
+        <div>
+            <a href="{% url "client-list" %}">
+                <button type="button" class="btn btn-danger">Back</button>
+            </a>
+            <a href="{% url "client-edit" client.id %}">
+                <button type="button" class="btn btn-primary">Edit</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+
 <h1>Client's Details</h1>
 
 <p>Name: {{object.name}}</p>
