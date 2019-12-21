@@ -1,0 +1,8 @@
+<h1>Client's Information</h1>
+
+<form  method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url "client-list" %}"><input  type="button"  value="Back" /></a>
+    <input  type="submit"  value="Submit" />
+</form>

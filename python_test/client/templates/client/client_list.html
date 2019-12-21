@@ -1,0 +1,48 @@
+<h1>Clients <a  href="{% url "client-create" %}">add</a></h1>
+<form method="GET">
+    Filter by: 
+    {{ filter.form }}
+    <br><br>
+    Order by: 
+    <select name="order_by">
+        <option value="name">Name</option>
+        <option value="email">Email Address</option>
+        <option value="suburb">Suburb</option>
+        <option value="phone_number">Phone Number</option>
+    </select>
+    <select name="ordering">
+        <option value="asc">Ascending</option> 
+        <option value="des">Descending</option> 
+    </select>
+    <br><br>
+    <button type="submit">Search</button>
+</form>
+
+<br><br>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address (Suburb)</th>
+            <th>Contact Person</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in object_list %}
+        <tr>
+            <td><a  href="{% url "client-detail"  client.id  %}">{{ client.name }}</a></td>
+            <td>{{ client.email }}</td>
+            <td>
+                {{client.street|default_if_none:""}} 
+                {{client.suburb|default_if_none:""}} 
+                {{client.state|default_if_none:""}} 
+                {{client.postcode|default_if_none:""}}
+            </td>
+            <td>{{ client.contact_person|default_if_none:"" }}</td>
+            <td>{{ client.phone_number }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

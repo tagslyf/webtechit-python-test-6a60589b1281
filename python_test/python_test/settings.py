@@ -46,6 +46,12 @@ PROJECT_APPS = [
 
 INSTALLED_APPS += PROJECT_APPS
 
+THIRD_PARTY_APPS = [
+    'django_filters',
+]
+
+INSTALLED_APPS += THIRD_PARTY_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

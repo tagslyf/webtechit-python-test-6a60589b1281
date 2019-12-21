@@ -1,0 +1,10 @@
+<h1>Client's Details</h1>
+
+<p>Name: {{object.name}}</p>
+<p>Address: {{object.street|default_if_none:""}} {{object.suburb|default_if_none:""}} {{object.state|default_if_none:""}} {{object.postcode|default_if_none:""}}</p>
+<p>Email: {{object.email}}</p>
+<p>Contact Person: {{object.contact_person|default_if_none:""}}</p>
+<p>Phone Number: {{object.phone_number}}</p>
+
+<a  href="{% url "client-list" %}">Clients List</a>
+<a  href="{% url "client-edit"  object.id  %}">edit</a>
